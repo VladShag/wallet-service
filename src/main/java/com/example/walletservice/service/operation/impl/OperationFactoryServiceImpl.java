@@ -1,0 +1,37 @@
+package com.example.walletservice.service.operation.impl;
+
+import com.example.walletservice.enums.OperationType;
+import com.example.walletservice.exception.InvalidOperationTypeException;
+import com.example.walletservice.service.operation.OperationFactoryService;
+import com.example.walletservice.service.operation.WalletOperation;
+import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Component
+public class OperationFactoryServiceImpl implements OperationFactoryService {
+    private final Map<OperationType, WalletOperation> map = new HashMap<>();
+
+    public OperationFactoryServiceImpl(List<WalletOperation> handlers) {
+        for (WalletOperation handler : handlers) {
+            map.put(handler.getOperationType(), handler);
+        }
+    }
+
+    /**
+     * Найти нужный обработчик по типу запроса на изменение.
+     *
+     * @param operationType тип запроса на изменение
+     * @return обработчик
+     * */
+    @Override
+    public WalletOperation findHandler(OperationType operationType) {
+        WalletOperation walletOperation = map.get(operationType);
+        if (walletOperation == null) {
+            throw new InvalidOperationTypeException("Не найдено обработчика для операции: " + operationType);
+        }
+        return walletOperation;
+    }
+}

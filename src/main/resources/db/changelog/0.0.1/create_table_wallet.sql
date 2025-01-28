@@ -1,0 +1,1 @@
+create table wallet (id uuid primary key, balance bigint not null)

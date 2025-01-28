@@ -1,0 +1,1 @@
+insert into wallet (id, balance) values ('723db03a-9ce6-4da3-8c4e-0b040aabb6ef', 100)
