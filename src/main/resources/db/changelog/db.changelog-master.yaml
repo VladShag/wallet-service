@@ -1,5 +1,11 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/0.0.1/0.0.1.xml
+      file: db/changelog/0.0.1/0.0.1_u.xml
   - include:
-      file: db/changelog/0.0.2/0.0.2.xml
+      file: db/changelog/0.0.2/0.0.2_u.xml
+  - include:
+      file: db/changelog/0.0.4/0.0.4.xml
+  - include:
+      file: db/changelog/0.0.5/0.0.5.xml
+  - include:
+      file: db/changelog/0.0.6/0.0.6.xml

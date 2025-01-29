@@ -5,16 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet id="0.0.3" author="vshagalov">
-        <preConditions onSqlOutput="TEST"
-                       onFailMessage="Таблица users уже существует">
-            <not>
-                <tableExists tableName="users"/>
-            </not>
-        </preConditions>
-        <sqlFile path="create_table_user.sql"
-                 relativeToChangelogFile="true"/>
+        <sqlFile path="insert_into_wallet.sql" relativeToChangelogFile="true"/>
         <rollback>
-            <sqlFile path="rollback/create_table_user_rollback.sql"
+            <sqlFile path="rollback/insert_into_wallet_rollback.sql"
                      relativeToChangelogFile="true"/>
         </rollback>
     </changeSet>
