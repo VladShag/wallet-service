@@ -1,9 +1,7 @@
 package com.example.walletservice.service.impl;
 
-import com.example.walletservice.dto.WalletRequest;
+import com.example.walletservice.dto.WalletRequestDto;
 import com.example.walletservice.enums.OperationType;
-import com.example.walletservice.exception.InsufficientFundsException;
-import com.example.walletservice.exception.InvalidOperationTypeException;
 import com.example.walletservice.exception.WalletNotFoundException;
 import com.example.walletservice.model.Wallet;
 import com.example.walletservice.repository.WalletRepository;
@@ -18,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+/**
+ * Реализация {@link WalletService}.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -27,14 +28,14 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public synchronized void updateWallet(WalletRequest walletRequest) {
+    public synchronized void updateWallet(WalletRequestDto walletRequestDto) {
         log.info("Начинаем операцию {} для кошелька с UUID {}",
-                walletRequest.getOperationType(), walletRequest.getWalletId());
-        Wallet wallet = walletRepository.findById(walletRequest.getWalletId())
+                walletRequestDto.getOperationType(), walletRequestDto.getWalletId());
+        Wallet wallet = walletRepository.findById(walletRequestDto.getWalletId())
                 .orElseThrow(() -> new WalletNotFoundException("Кошелек не найден!"));
 
-        OperationType operationType = OperationType.getTypeFromNameOrElseThrow(walletRequest.getOperationType());
-        Long amount = walletRequest.getAmount();
+        OperationType operationType = OperationType.getTypeFromNameOrElseThrow(walletRequestDto.getOperationType());
+        Long amount = walletRequestDto.getAmount();
 
         WalletOperation walletOperation = operationFactory.findHandler(operationType);
         walletOperation.execute(wallet, amount);

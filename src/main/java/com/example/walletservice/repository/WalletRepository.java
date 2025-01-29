@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+/**
+ * Репозиторий для работы с таблицей wallet.
+ */
 public interface WalletRepository extends JpaRepository<Wallet, UUID> {
 }

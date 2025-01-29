@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 
+/**
+ * Типы поддерживаемых операций над кошельком.
+ */
 @Getter
 @RequiredArgsConstructor
 public enum OperationType {

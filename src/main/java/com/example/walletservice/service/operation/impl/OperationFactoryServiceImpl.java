@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Реализация {@link OperationFactoryService}.
+ */
 @Component
 public class OperationFactoryServiceImpl implements OperationFactoryService {
     private final Map<OperationType, WalletOperation> map = new HashMap<>();
@@ -20,12 +23,6 @@ public class OperationFactoryServiceImpl implements OperationFactoryService {
         }
     }
 
-    /**
-     * Найти нужный обработчик по типу запроса на изменение.
-     *
-     * @param operationType тип запроса на изменение
-     * @return обработчик
-     * */
     @Override
     public WalletOperation findHandler(OperationType operationType) {
         WalletOperation walletOperation = map.get(operationType);

@@ -7,6 +7,9 @@ import com.example.walletservice.service.operation.WalletOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+/**
+ * Реализация {@link WalletOperation} для операции снятия.
+ */
 @Service
 @Slf4j
 public class WithdrawOperation implements WalletOperation {
