@@ -6,6 +6,7 @@ import com.example.walletservice.service.WalletService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ public class WalletController {
      */
     @PostMapping
     @ResponseStatus(value = HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or #request.walletId == principal.id")
     public void updateWallet(@RequestBody WalletRequestDto request) {
         walletService.updateWallet(request);
     }
@@ -44,6 +46,7 @@ public class WalletController {
      * @return Баланс кошелька в виде {@link Long}
      */
     @GetMapping("/{walletId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or #walletId == principal.id")
     public Long getWalletBalance(@PathVariable UUID walletId) {
         return walletService.getWalletBalance(walletId);
     }

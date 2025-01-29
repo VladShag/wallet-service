@@ -4,17 +4,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="0.0.1" author="vshagalov">
+    <changeSet id="0.0.4" author="vshagalov">
         <preConditions onSqlOutput="TEST"
-                       onFailMessage="Таблица wallet уже существует">
+                       onFailMessage="Таблица roles уже существует">
             <not>
-                <tableExists tableName="wallet"/>
+                <tableExists tableName="roles"/>
             </not>
         </preConditions>
-        <sqlFile path="create_table_wallet.sql"
+        <sqlFile path="create_table_role.sql"
                  relativeToChangelogFile="true"/>
         <rollback>
-            <sqlFile path="rollback/create_table_wallet_rollback.sql"
+            <sqlFile path="rollback/create_table_role_rollback.sql"
                      relativeToChangelogFile="true"/>
         </rollback>
     </changeSet>

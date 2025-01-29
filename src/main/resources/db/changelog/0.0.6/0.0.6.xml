@@ -4,12 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="0.0.2" author="vshagalov">
-        <sqlFile path="insert_into_wallet.sql" relativeToChangelogFile="true"/>
-        <rollback>
-            <sqlFile path="rollback/insert_into_wallet_rollback.sql"
-                     relativeToChangelogFile="true"/>
-        </rollback>
+    <changeSet id="0.0.6" author="vshagalov">
+        <sqlFile path="insert_values.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
 </databaseChangeLog>
