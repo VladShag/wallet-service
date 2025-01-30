@@ -34,8 +34,10 @@ public class WalletController {
      */
     @PostMapping
     @ResponseStatus(value = HttpStatus.OK)
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #request.walletId == principal.id")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or authentication.principal.id == @walletServiceImpl.getWalletUserId(#request.walletId)")
     public void updateWallet(@RequestBody WalletRequestDto request) {
+        log.info("Получен запрос на обновление кошелька {} операцией {} на сумму {}",
+                request.getWalletId(), request.getOperationType(), request.getAmount());
         walletService.updateWallet(request);
     }
 
@@ -46,8 +48,9 @@ public class WalletController {
      * @return Баланс кошелька в виде {@link Long}
      */
     @GetMapping("/{walletId}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #walletId == principal.id")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or authentication.principal.id == @walletServiceImpl.getWalletUserId(#walletId)")
     public Long getWalletBalance(@PathVariable UUID walletId) {
+        log.info("Получен запрос на получение баланса кошелька {}", walletId);
         return walletService.getWalletBalance(walletId);
     }
 }

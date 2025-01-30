@@ -48,4 +48,12 @@ public class WalletServiceImpl implements WalletService {
                 () -> new WalletNotFoundException("Кошелек не найден!"));
         return wallet.getBalance();
     }
+
+    @Override
+    public UUID getWalletUserId(UUID walletId) {
+        log.info("Запрос получения ИД кошелька");
+        Wallet wallet = walletRepository.findById(walletId).orElseThrow(() -> new WalletNotFoundException("Wallet not found"));
+        log.info("Найден кошелек {}, {}", wallet.getId(), wallet.getUser());
+        return wallet.getUser().getId();
+    }
 }

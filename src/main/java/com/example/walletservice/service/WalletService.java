@@ -23,4 +23,12 @@ public interface WalletService {
      * @return Баланс кошелька в виде {@link Long}
      */
     Long getWalletBalance(UUID walletId);
+
+    /**
+     * Получить ID владельца кошелька по ID кошелька.
+     *
+     * @param walletId ИД кошелька
+     * @return {@link UUID} пользователя
+     */
+    UUID getWalletUserId(UUID walletId);
 }
